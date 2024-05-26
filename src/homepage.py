@@ -2,11 +2,8 @@ from __future__ import annotations
 
 import dash_core_components as dcc
 import dash_html_components as html
-
-from src.components import navbar
-
+from src import navbar
 from typing import TYPE_CHECKING
-
 if TYPE_CHECKING:
     from dash import Dash
 

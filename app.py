@@ -6,7 +6,7 @@ import flask
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-
+from src.homepage import Homepage
 import src.cache as cache
 import src.config as config
 import src.index as index
@@ -93,10 +93,12 @@ if __name__ != '__main__':
     server.logger.info("#############################################################")
     server.logger.info("Running server on gunicorn")
     # server.logger.info(f"Debugger PIN: {debug_pin}")
+    app.run_server(debug=True, )
+    server.logger.info("Running server!")
 else:
     server.logger.setLevel(logging.DEBUG)
 
-redis_cache = cache.CacheInterface(app)
+redis_cache = cache.CacheInterface(app,)
 redis_cache.load_from_disk()
 
 app_router = index.DGIndex(app, redis_cache)
@@ -104,7 +106,7 @@ app_router.init_app(app)
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, )
     server.logger.info("Running server!")
 
 # TODO look into this maybe? serving from assets/css, assets/js etc.

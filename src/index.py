@@ -6,18 +6,17 @@ import dash
 from dash.dependencies import Input, Output, State
 
 from src import auth
-from src.components import homepage
-from src.components import navbar
-from src.components import new_dashboard
-from src.components import nopage
-from src.components import render_dashboard
+from src import homepage
+from src import navbar
+from src import new_dashboard
+from src import nopage
+from src import render_dashboard
 
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    import dash_html_components as html
 
-    from src import cache as cache_int
+import dash_html_components as html
+from src import cache as cache_int
 
 
 class DGIndex:
@@ -50,7 +49,7 @@ class DGIndex:
                       [State("url", "search"),
                        State("login-url", "search"),
                        State("download-url", "search"), ])
-        def route_logins(_u1: Any, _u2: Any, _u3: Any, _q1: Any, _q2: Any, _q3: Any) -> tuple[html.Div, Union[dash.no_update, str]]:
+        def route_logins(_u1: Any, _u2: Any, _u3: Any, _q1: Any, _q2: Any, _q3: Any) -> tuple:
             # Delete all input variables. We get the needed values through dash.callback_context
             del _u1, _u2, _u3, _q1, _q2, _q3
             ctx = dash.callback_context

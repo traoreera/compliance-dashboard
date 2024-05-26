@@ -6,15 +6,13 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 from src import create_dashbord_helper
-from src.components import navbar
+from src import navbar
 
 from typing import Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from dash.dash import _NoUpdate
-    from dash.development.base_component import Component
 
-    from src import cache as cache_int
+from dash.development.base_component import Component
+from src import cache as cache_int
 
 
 def setup_callbacks(app: dash.Dash, cache: cache_int.CacheInterface) -> None:
@@ -69,7 +67,7 @@ def create_button_callback(app: dash.Dash, button_id: str, compliance_upload_id:
                    State("input-title", "value"),
                    State("input-disclosures", "value"), ],
                   prevent_initial_call=True)
-    def update_button(clicked: int, c_contents: str, t_contents: str, title: str, valid_disclosures: float) -> tuple[Union[str, _NoUpdate], ...]:
+    def update_button(clicked: int, c_contents: str, t_contents: str, title: str, valid_disclosures: float) -> tuple[Union[str, html.Div], ...]:
         # TODO accept only CSV/XLS(X)?
 
         # Short circuit if empty
@@ -80,7 +78,7 @@ def create_button_callback(app: dash.Dash, button_id: str, compliance_upload_id:
         ctx = dash.callback_context
         num_outputs = len(ctx.outputs_list)  # TODO check this is 4
 
-        def update_button_text(new_text: str) -> tuple[str, _NoUpdate, _NoUpdate, _NoUpdate]:
+        def update_button_text(new_text: str) :
             return new_text, dash.no_update, dash.no_update, dash.no_update
 
         # Check all values are present

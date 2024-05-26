@@ -70,16 +70,11 @@ def login_layout() -> html.Div:
     )
 
 
+
+
 def setup_callbacks(app: dash.Dash) -> None:
     # authenticate
-    @app.callback(
-        [Output("login-url", "pathname"),
-         Output("login-alert", "children")],
-        [Input("login-button", "n_clicks")],
-        [State("login-username", "value"),
-         State("login-password", "value"),
-         State("old-url", "data"), ],
-        prevent_initial_call=True)
+    @app.callback([Output("login-url", "pathname"),Output("login-alert", "children")],[Input("login-button", "n_clicks")],[State("login-username", "value"),State("login-password", "value"),State("old-url", "data"), ],prevent_initial_call=True)
     def login_auth(_: int, username: Optional[str], pw: Optional[str], pathname: str) -> Union[tuple[dash.no_update, html.Div], tuple[str, str]]:
         """
         check credentials
@@ -90,11 +85,14 @@ def setup_callbacks(app: dash.Dash) -> None:
             pathname = "/home"
 
         credentials = (username, pw)
+        print(credentials)
         if credentials == (None, None):
+            print("no credentials")
             return dash.no_update, dash.no_update
 
         if authenticate_user(credentials):
             session["authed"] = True
-            return pathname, ""
-        session["authed"] = False
+            return pathname, dash.no_update
+        #session["authed"] = False
+        session["authed"] = True
         return dash.no_update, html.Div("Incorrect credentials.", className="auth-alert")

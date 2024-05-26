@@ -25,7 +25,7 @@ class CacheInterface:
             CACHE_REDIS_DB=0,
             CACHE_OPTIONS={"ssl": True}
         ))
-        self.r: redis.Redis = self.cache.cache._read_clients  # NoQA
+        self.r: redis.Redis = self.cache.cache._read_client  # NoQA
         self.key_prefix = self.cache.cache.key_prefix
         self.environment = "prod" if config.is_production else "dev"
         self.app = app

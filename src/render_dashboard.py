@@ -12,8 +12,8 @@ import dash_html_components as html
 import pandas as pd
 import pyarrow
 
-from src.components import navbar
-import src.config as config
+from src import navbar
+import src as config
 
 from typing import Any, Optional, TYPE_CHECKING, Union
 

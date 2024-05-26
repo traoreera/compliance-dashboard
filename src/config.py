@@ -7,11 +7,11 @@ DATA_ROOT = PROJECT_ROOT / "data"
 DOWNLOAD_DIR = DATA_ROOT / "download"
 UPLOAD_DIR = DATA_ROOT / "upload"
 
-secret_key = os.environ.get("secret_key")  # Flask Secret Key
+secret_key = "hunters"#os.environ.get("secret_key")  # Flask Secret Key
 is_production = False if os.environ.get("dev_env") else True
 
-user = os.environ.get("user")
-password = os.environ.get("pass")
+user = "hunters"#os.environ.get("user")
+password = "hunters" #s.environ.get("pass")
 
-redis_host = os.environ.get("REDIS_HOST")
-redis_key = os.environ.get("REDIS_KEY")
+redis_host ="localhost"# os.environ.get("REDIS_HOST")
+redis_key = "12345678"# os.environ.get("REDIS_KEY")
